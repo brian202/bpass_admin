@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
+import Login from '@/views/LogIn.vue';
 
 Vue.use(VueRouter);
 
@@ -37,8 +38,15 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/login',
-    name: 'Log In',
-    component: () => import('../views/LogIn.vue'),
+    name: 'Login',
+    component: Login,
+    beforeEnter(to, from, next) {
+      if(localStorage.getItem('accesstoken')){
+        next({name:'Home'})
+      } else {
+        next();
+      }
+    }
   },
 ];
 
@@ -47,5 +55,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
 
 export default router;

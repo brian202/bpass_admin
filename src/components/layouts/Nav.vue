@@ -1,42 +1,48 @@
 <template>
-  <div id="nav">
-    <ul :class="{ 'menu-list': !isSubmenuList }">
-      <menu-item
-        v-for="(item, index) in menu"
-        @menu-click="menuClick"
-        :item="item"
-        :key="index"
-      />
-    </ul>
+  <div class="icon-bar">
+    <router-link to="/"><i class="fa fa-home"></i></router-link>
+    <router-link to="/notice"><i class="fas fa-edit"></i></router-link>
+    <router-link to="/push"><i class="fas fa-paper-plane"></i></router-link>
+    <router-link to="/login"><i class="far fa-keyboard"></i></router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import MenuItem from '@/components/Menu/MenuItem.vue';
-import { IMenu } from '@/types/menu.types';
+import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    MenuItem,
-  },
-  props: {
-    isSubmenuList: {
-      type: Boolean,
-      default: false,
-    },
-    menu: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  methods: {
-    menuClick(item) {
-      this.$emit('menu-click', item);
-    },
-  },
-})
-export default class Nav extends Vue {
-  @Prop({ default: () => [] }) menu?: IMenu[];
+@Component
+export default class  extends Vue {
 }
 </script>
+
+<style scoped>
+.icon-bar {
+  height: 100%;
+  width: 90px;
+  background-color: #555;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  /*z-index: 1;*/ /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  background-color: #858585;
+}
+
+.active {
+  background-color: #5eaf13;
+}
+
+</style>
