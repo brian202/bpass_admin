@@ -1,42 +1,49 @@
 <template>
-  <div id="nav">
-    <ul :class="{ 'menu-list': !isSubmenuList }">
-      <menu-item
-        v-for="(item, index) in menu"
-        @menu-click="menuClick"
-        :item="item"
-        :key="index"
-      />
-    </ul>
+  <div>
+    <sidebar-menu :menu="menu" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import MenuItem from '@/components/Menu/MenuItem.vue';
-import { IMenu } from '@/types/menu.types';
+import { Component, Vue } from 'vue-property-decorator';
+import { SidebarMenu } from 'vue-sidebar-menu';
 
 @Component({
   components: {
-    MenuItem,
-  },
-  props: {
-    isSubmenuList: {
-      type: Boolean,
-      default: false,
-    },
-    menu: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  methods: {
-    menuClick(item) {
-      this.$emit('menu-click', item);
-    },
-  },
+    SidebarMenu
+  }
 })
-export default class Nav extends Vue {
-  @Prop({ default: () => [] }) menu?: IMenu[];
+export default class  extends Vue {
+
+  menu = [
+    {
+      href: '/',
+      title: 'Dashboard',
+      icon: 'fa fa-user'
+    },
+    {
+      href: '/notice',
+      title: '공지사항',
+      icon: 'fa fa-list-ul',
+      child: [
+        {
+          href: '/notice/list',
+          title: '공지사항 리스트',
+          icon: 'fa fa-file-alt'
+        },
+        {
+          href: '/notice/Write',
+          title: '공지사항 등록',
+          icon: 'fa fa-file-alt'
+        },
+      ]
+    },
+    {
+      href: '/push',
+      title: '푸시',
+      icon: 'fa fa-address-book' 
+    }
+  ]
 }
+
 </script>

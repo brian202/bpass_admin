@@ -1,17 +1,18 @@
 <template>
   <div class="home">
     <Header />
-    <Nav :menu="menu" />
-    <router-view></router-view>
+    <div class="contents">
+      <Nav/>
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Menu } from '@/store/modules/menu.state';
 
-import Header from '@/components/layouts/Header.vue'; // @ is an alias to /src
-import Nav from '@/components/layouts/Nav.vue'; // @ is an alias to /src
+import Header from '@/components/layouts/Header.vue'; 
+import Nav from '@/components/layouts/Nav.vue'; 
 
 @Component({
   components: {
@@ -20,8 +21,8 @@ import Nav from '@/components/layouts/Nav.vue'; // @ is an alias to /src
   },
 })
 export default class Home extends Vue {
-  get menu() {
-    return Menu;
-  }
 }
 </script>
+<style scoped>
+
+</style>
