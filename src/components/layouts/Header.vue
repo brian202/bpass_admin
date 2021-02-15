@@ -1,15 +1,12 @@
 <template>
   <div id = "header">
-    <div class="header-logo">
-      <img alt="Bpass logo" src="../../assets/images/logo.png" />
-    </div>
     <div class="header-container">
+      <div class="header-logo">
+        <img src="../../assets/images/logo.png"/>
+      </div>
       <!-- 나중에 경로 입력할 부분 ( ex) 공지사항 > 공지사항 등록 ) -->
       <!-- ///// 임시로 경로 입력함 (나중에 삭제 요망) //////// -->
-      <a href = "/">Dashboard | </a>
-      <a href = "/notice">Notice | </a>
-      <a href = "/push">Push | </a>
-      <a href="" v-if="isAuthenticated" @click.prevent="onClickLogout">Logout</a> 
+      <a v-if="isAuthenticated" @click.prevent="onClickLogout"><i class="fa fa-user"> Logout</i></a> 
       <router-link to="/login" v-else>Login</router-link> 
       <!-- ///////////////////////////////// -->
     </div>
@@ -36,15 +33,18 @@ export default class Header extends Vue {
 </script>
 <style scoped>
 .header {
-  width: 100%;
+  width: 30%;
 }
 .header-logo {
-  padding: 30px;
-  width: 20%;
-  float: left;
+  margin: 30px;
 }
 .header-container {
+  float: right;
   padding: 30px;
-  width: 80%;
+  width: 100%;
+}
+.header-container a {
+  float: right;
+  cursor:pointer;
 }
 </style>
