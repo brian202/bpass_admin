@@ -43,14 +43,6 @@ const routes: RouteConfig[] = [
         beforeEnter,
       },
       {
-        meta: {
-          title: 'Notice',
-        },
-        path: '/notice',
-        name: 'Notice',
-        component: () => import('@/components/Notice/NoticeList.vue'),
-      },
-      {
         path: '/notice/list',
         name: 'List',
         component: () => import('@/components/Notice/NoticeList.vue'),

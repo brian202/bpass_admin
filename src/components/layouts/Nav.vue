@@ -28,7 +28,6 @@ export default class extends Vue {
       icon: 'fa fa-user',
     },
     {
-      href: '/notice',
       title: '공지사항',
       icon: 'fa fa-list-ul',
       child: [
@@ -38,7 +37,7 @@ export default class extends Vue {
           icon: 'fa fa-file-alt',
         },
         {
-          href: '/notice/Write',
+          href: '/notice/write',
           title: '공지사항 등록',
           icon: 'fa fa-file-alt',
         },
