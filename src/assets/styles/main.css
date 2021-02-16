@@ -1,10 +1,7 @@
-/* base */
 @import './base/_base.css';
 
-/* views */
+@import './components/_dashboard.css';
+@import './components/_layout.css';
+
 @import './views/_home.css';
 @import './views/_login.css';
-
-@import './views/_notice.css';
-
-@import './views/_nav.css';
