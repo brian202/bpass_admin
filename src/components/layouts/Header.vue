@@ -11,7 +11,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import store from '@/store';
 import { userModule } from '@/store/modules/user.state';
 
 @Component
