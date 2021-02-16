@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <Header />
-    <div class="contents">
+    <div class="navigator-container">
       <Nav />
+    </div>
+    <div class="contents-container">
+      <Header />
       <router-view />
     </div>
   </div>

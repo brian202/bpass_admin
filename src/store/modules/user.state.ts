@@ -13,13 +13,13 @@ import store from '@/store';
 export interface IUserState {
   email: string;
   duration: number;
-  accessToken: string;
+  accessToken: string | null;
 }
 
 @Module({ dynamic: true, namespaced: true, name: 'userModule', store })
 class User extends VuexModule implements IUserState {
   email = getItem('email') || '';
-  accessToken = getItem('access_token') || '';
+  accessToken = getItem('access_token') || null;
   duration = 0;
 
   @Action({ rawError: true })
