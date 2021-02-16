@@ -33,12 +33,13 @@ class User extends VuexModule implements IUserState {
 
   @Action({ rawError: true })
   async logout() {
-    if (this.accessToken == '') {
+    if (this.accessToken === null) {
       throw Error('token is undefined');
     }
 
     //api호출
     removeItem('access_token');
+    this.context.commit('SET_TOKEN', null);
   }
 
   @Mutation

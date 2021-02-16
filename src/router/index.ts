@@ -52,18 +52,18 @@ const routes: RouteConfig[] = [
       {
         path: '/notice/list',
         name: 'List',
-        component: () => import('@/views/Notice/NoticeList.vue'),
+        component: () => import('@/components/Notice/NoticeList.vue'),
       },
       {
         path: '/notice/write',
         name: 'Write',
-        component: () => import('@/views/Notice/NoticeWrite.vue'),
+        component: () => import('@/components/Notice/NoticeWrite.vue'),
         beforeEnter,
       },
       {
         path: '/board/view', //상세페이지 추가
         name: 'View',
-        component: () => import('@/views/Notice/NoticeView.vue'),
+        component: () => import('@/components/Notice/NoticeView.vue'),
         beforeEnter,
       },
       {
