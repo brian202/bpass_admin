@@ -1,13 +1,15 @@
 <template>
-  <div id = "header">
+  <div id="header">
     <div class="header-container">
       <div class="header-logo">
-        <img src="../../assets/images/logo.png"/>
+        <img src="../../assets/images/logo.png" />
       </div>
       <!-- 나중에 경로 입력할 부분 ( ex) 공지사항 > 공지사항 등록 ) -->
       <!-- ///// 임시로 경로 입력함 (나중에 삭제 요망) //////// -->
-      <a v-if="isAuthenticated" @click.prevent="onClickLogout"><i class="fa fa-user"> Logout</i></a> 
-      <router-link to="/login" v-else>Login</router-link> 
+      <a v-if="isAuthenticated" @click.prevent="onClickLogout"
+        ><i class="fa fa-user"> Logout</i></a
+      >
+      <router-link to="/login" v-else>Login</router-link>
       <!-- ///////////////////////////////// -->
     </div>
   </div>
@@ -15,19 +17,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import store from "@/store"
+import store from '@/store';
 
 @Component({
-	computed: {
+  computed: {
     isAuthenticated() {
-      return store.getters.isAuthenticated
-    }
-	}
+      return store.getters.isAuthenticated;
+    },
+  },
 })
 export default class Header extends Vue {
   onClickLogout() {
     // LOGOUT 변이 실행 후 리다이렉트
-    store.dispatch("LOGOUT").then(() => this.$router.push("/login"))
+    store.dispatch('LOGOUT').then(() => this.$router.push('/login'));
   }
 }
 </script>
@@ -45,6 +47,6 @@ export default class Header extends Vue {
 }
 .header-container a {
   float: right;
-  cursor:pointer;
+  cursor: pointer;
 }
 </style>

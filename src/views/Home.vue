@@ -2,8 +2,8 @@
   <div class="home">
     <Header />
     <div class="contents">
-      <Nav/>
-      <router-view/>
+      <Nav />
+      <router-view />
     </div>
   </div>
 </template>
@@ -11,8 +11,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-import Header from '@/components/layouts/Header.vue'; 
-import Nav from '@/components/layouts/Nav.vue'; 
+import Header from '@/components/layouts/Header.vue';
+import Nav from '@/components/layouts/Nav.vue';
 
 @Component({
   components: {
@@ -20,9 +20,6 @@ import Nav from '@/components/layouts/Nav.vue';
     Nav,
   },
 })
-export default class Home extends Vue {
-}
+export default class Home extends Vue {}
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
