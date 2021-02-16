@@ -33,4 +33,20 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.header {
+  width: 30%;
+}
+.header-logo {
+  margin: 30px;
+}
+.header-container {
+  float: right;
+  padding: 30px;
+  width: 100%;
+}
+.header-container a {
+  float: right;
+  cursor: pointer;
+}
+</style>
