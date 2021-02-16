@@ -48,6 +48,7 @@ const routes: RouteConfig[] = [
         },
         path: '/notice',
         name: 'Notice',
+        component: () => import('@/components/Notice/NoticeList.vue'),
       },
       {
         path: '/notice/list',
