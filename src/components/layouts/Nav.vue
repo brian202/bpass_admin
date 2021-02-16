@@ -1,6 +1,9 @@
 <template>
   <div>
-    <sidebar-menu :menu="menu" />
+    <sidebar-menu :menu="menu">
+      <span slot="toggle-icon"><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
+      <span slot="dropdown-icon"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+    </sidebar-menu>
   </div>
 </template>
 
@@ -13,6 +16,7 @@ import { SidebarMenu } from 'vue-sidebar-menu';
     SidebarMenu,
   },
 })
+
 export default class extends Vue {
   menu = [
     {
@@ -45,3 +49,7 @@ export default class extends Vue {
   ];
 }
 </script>
+
+<style>
+
+</style>
