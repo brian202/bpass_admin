@@ -13,13 +13,13 @@ import store from '@/store';
 export interface IUserState {
   email: string;
   duration: number;
-  accessToken: string;
+  accessToken: string | null;
 }
 
 @Module({ dynamic: true, namespaced: true, name: 'userModule', store })
 class User extends VuexModule implements IUserState {
   email = getItem('email') || '';
-  accessToken = getItem('access_token') || '';
+  accessToken = getItem('access_token') || null;
   duration = 0;
 
   @Action({ rawError: true })
@@ -33,12 +33,13 @@ class User extends VuexModule implements IUserState {
 
   @Action({ rawError: true })
   async logout() {
-    if (this.accessToken == '') {
+    if (this.accessToken === null) {
       throw Error('token is undefined');
     }
 
     //api호출
     removeItem('access_token');
+    this.context.commit('SET_TOKEN', null);
   }
 
   @Mutation

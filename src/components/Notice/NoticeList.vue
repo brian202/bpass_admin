@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import Pagination from '@/views/Notice/Pagination.vue';
+import Pagination from '@/components/Notice/Pagination.vue';
 
 @Component({
   components: {
