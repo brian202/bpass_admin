@@ -45,7 +45,7 @@ const routes: RouteConfig[] = [
         },
         path: '/notice',
         name: 'Notice',
-        component: () => import('@/components/Notice/index.vue'),
+        component: () => import('@/views/Notice/NoticeList.vue'),
         //beforeEnter: requireAuth(),
       },
       {

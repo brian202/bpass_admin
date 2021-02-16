@@ -1,3 +1,10 @@
+/* base */
 @import './base/_base.css';
 
+/* views */
 @import './views/_home.css';
+@import './views/_login.css';
+
+@import './views/_notice.css';
+
+@import './views/_nav.css';
