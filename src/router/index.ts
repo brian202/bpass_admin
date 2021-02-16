@@ -9,10 +9,10 @@ Vue.use(VueRouter);
 Vue.use(VueSidebarMenu);
 
 const requireAuth = () => (from: any, to: any, next: any) => {
-  const isAuthenticated = false
-  if (isAuthenticated) return next()
-  next('/login?returnPath=Dashboard')
-}
+  const isAuthenticated = false;
+  if (isAuthenticated) return next();
+  next('/login?returnPath=Dashboard');
+};
 
 const routes: RouteConfig[] = [
   {
@@ -22,9 +22,9 @@ const routes: RouteConfig[] = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index.vue')
-      }
-    ]
+        component: () => import('@/views/redirect/index.vue'),
+      },
+    ],
   },
   {
     path: '/',
@@ -54,12 +54,12 @@ const routes: RouteConfig[] = [
         component: () => import('@/views/Notice/NoticeList.vue'),
       },
       {
-        path:'/notice/write',
+        path: '/notice/write',
         name: 'Write',
         component: () => import('@/views/Notice/NoticeWrite.vue'),
       },
       {
-        path: '/board/view',  //상세페이지 추가
+        path: '/board/view', //상세페이지 추가
         name: 'View',
         component: () => import('@/views/Notice/NoticeView.vue'),
       },
@@ -78,13 +78,13 @@ const routes: RouteConfig[] = [
     path: '/login',
     name: 'Login',
     component: Login,
-    beforeEnter (to, from, next) {
-      if(localStorage.getItem('accesstoken')){
-        next({name:'Dashboard'})
+    beforeEnter(to, from, next) {
+      if (localStorage.getItem('accesstoken')) {
+        next({ name: 'Dashboard' });
       } else {
         next();
       }
-    }
+    },
   },
 ];
 
@@ -93,6 +93,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
 
 export default router;

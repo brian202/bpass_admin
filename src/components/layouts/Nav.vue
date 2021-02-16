@@ -10,16 +10,15 @@ import { SidebarMenu } from 'vue-sidebar-menu';
 
 @Component({
   components: {
-    SidebarMenu
-  }
+    SidebarMenu,
+  },
 })
-export default class  extends Vue {
-
+export default class extends Vue {
   menu = [
     {
       href: '/',
       title: 'Dashboard',
-      icon: 'fa fa-user'
+      icon: 'fa fa-user',
     },
     {
       href: '/notice',
@@ -29,21 +28,20 @@ export default class  extends Vue {
         {
           href: '/notice/list',
           title: '공지사항 리스트',
-          icon: 'fa fa-file-alt'
+          icon: 'fa fa-file-alt',
         },
         {
           href: '/notice/Write',
           title: '공지사항 등록',
-          icon: 'fa fa-file-alt'
+          icon: 'fa fa-file-alt',
         },
-      ]
+      ],
     },
     {
       href: '/push',
       title: '푸시',
-      icon: 'fa fa-address-book' 
-    }
-  ]
+      icon: 'fa fa-paper-plane',
+    },
+  ];
 }
-
 </script>

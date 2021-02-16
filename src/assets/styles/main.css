@@ -1,3 +1,7 @@
 @import './base/_base.css';
 
+@import './components/_dashboard.css';
+@import './components/_layout.css';
+
 @import './views/_home.css';
+@import './views/_login.css';
