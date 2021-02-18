@@ -7,14 +7,7 @@
     @mouseenter="onMouseEnter"
   >
     <slot name="header" />
-    <div
-      class="scroll-wrapper"
-      :style="
-        isCollapsed && [
-          rtl ? { 'margin-left': '-17px' } : { 'margin-right': '-17px' },
-        ]
-      "
-    >
+    <div class="scroll-wrapper">
       <div class="list" :style="isCollapsed && { width: widthCollapsed }">
         <sidebar-menu-item
           v-for="(item, index) in menu"
