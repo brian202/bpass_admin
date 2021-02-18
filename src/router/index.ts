@@ -1,13 +1,10 @@
 import Vue from 'vue';
 import VueRouter, { Route, RouteConfig } from 'vue-router';
 import Login from '@/views/login/Login.vue';
-import VueSidebarMenu from 'vue-sidebar-menu';
-import 'vue-sidebar-menu/dist/vue-sidebar-menu.css';
 import Layout from '@/views/Home.vue';
 import { userModule } from '@/store/modules/user.state';
 
 Vue.use(VueRouter);
-Vue.use(VueSidebarMenu);
 
 const beforeEnter = (from: Route, to: Route, next: Function) => {
   if (userModule.accessToken) {

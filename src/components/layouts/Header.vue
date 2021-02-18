@@ -1,9 +1,7 @@
 <template>
-  <div id="header">
-    <div class="header-container">
-      <div class="header-logo">
-        <img src="../../assets/images/logo.png" />
-      </div>
+  <div class="header-container">
+    <div class="header-wrapper">
+      <img src="../../assets/images/bluelogo.svg" />
       <a @click.prevent="onClickLogout"><i class="fa fa-user"> Logout</i></a>
     </div>
   </div>
@@ -21,20 +19,3 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped>
-.header {
-  width: 30%;
-}
-.header-logo {
-  margin: 30px;
-}
-.header-container {
-  float: right;
-  padding: 30px;
-  width: 100%;
-}
-.header-container a {
-  float: right;
-  cursor: pointer;
-}
-</style>
