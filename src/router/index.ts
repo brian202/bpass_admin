@@ -43,14 +43,6 @@ const routes: RouteConfig[] = [
         beforeEnter,
       },
       {
-        meta: {
-          title: 'Notice',
-        },
-        path: '/notice',
-        name: 'Notice',
-        component: () => import('@/components/Notice/NoticeList.vue'),
-      },
-      {
         path: '/notice/list',
         name: 'List',
         component: () => import('@/components/Notice/NoticeList.vue'),
@@ -62,9 +54,17 @@ const routes: RouteConfig[] = [
         beforeEnter,
       },
       {
-        path: '/board/view', //상세페이지 추가
+        path: '/notice/list/:postId', // 상세페이지
         name: 'View',
         component: () => import('@/components/Notice/NoticeView.vue'),
+        props: true,
+        beforeEnter,
+      },
+      {
+        path: '/notice/list/:postId/Modify', // 수정페이지
+        name: 'Modify',
+        component: () => import('@/components/Notice/NoticeModify.vue'),
+        props: true,
         beforeEnter,
       },
       {
