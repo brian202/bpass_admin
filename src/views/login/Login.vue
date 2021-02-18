@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="login-container">
     <form class="loginForm" @submit.prevent="onSubmit()">
-      <h2>Log in</h2>
-      <div class="emailForm">
+      <img class="login-logo" src="../../assets/images/logo.png" />
+      <div class="field">
         <input
           type="text"
           class="email"
@@ -10,7 +10,7 @@
           placeholder="Email"
         />
       </div>
-      <div class="passwordForm">
+      <div class="field">
         <input
           type="password"
           class="password"
@@ -18,7 +18,7 @@
           placeholder="Password"
         />
       </div>
-      <input type="submit" class="btn" value="Login" />
+      <input type="submit" class="button" value="Login" />
     </form>
     <!-- <p>
       <i>{{ msg }}</i>

@@ -1,7 +1,11 @@
 @import './base/_base.css';
 
 @import './components/_dashboard.css';
-@import './components/_layout.css';
+@import './components/_nav.css';
+
+@import './layouts/_header.css';
 
 @import './views/_home.css';
 @import './views/_login.css';
+@import './views/_notice.css';
+@import './views/_pagination.css';

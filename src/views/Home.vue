@@ -3,9 +3,11 @@
     <div class="navigator-container">
       <Nav />
     </div>
-    <div class="contents-container">
+    <div class="content-container">
       <Header />
-      <router-view />
+      <div class="content-wrapper">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -24,4 +26,3 @@ import Nav from '@/components/layouts/Nav.vue';
 })
 export default class Home extends Vue {}
 </script>
-<style scoped></style>

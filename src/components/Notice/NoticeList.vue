@@ -67,6 +67,7 @@ export default class extends Vue {
     api.get('/t_notice')
       .then(response => {
         this.pageArray = response.data;
+
       })
   }
 
