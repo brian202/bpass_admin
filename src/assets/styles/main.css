@@ -2,10 +2,11 @@
 
 @import './components/_dashboard.css';
 @import './components/_nav.css';
+@import './components/_notice.css';
+@import './components/_push.css';
 
 @import './layouts/_header.css';
 
 @import './views/_home.css';
 @import './views/_login.css';
-@import './views/_notice.css';
 @import './views/_pagination.css';

@@ -11,7 +11,9 @@
       <tr v-for="value in pageArray" :key="value.id">
         <th>{{ value.id }}</th>
         <th>
-          <router-link :to="{ name: 'View' , params: { postId: value.id.toString()}}">
+          <router-link
+            :to="{ name: 'View', params: { postId: value.id.toString() } }"
+          >
             {{ value.title }}
           </router-link>
         </th>
@@ -19,6 +21,7 @@
         <th>{{ value.date }}</th>
       </tr>
     </table>
+
     <Pagination :counts="pageArray.length" />
   </div>
 </template>
@@ -36,16 +39,13 @@ import store from 'src/store';
 // 5. mapActions 핼퍼 함수 추가
 import { mapActions, mapState } from 'vuex';
 
-
-
-import { State, Action } from 'vuex-class'
-import { Notice } from '@/store/modules/notice'
+import { State, Action } from 'vuex-class';
+import { Notice } from '@/store/modules/notice';
 
 @Component({
   components: {
     Pagination,
-  }
-  ,
+  },
   // // 6. mapActions 헬퍼 함수를 컴포넌트에 fetchNoticeList 함수를 매핑
   computed: {
     // ...mapActions({
@@ -55,20 +55,17 @@ import { Notice } from '@/store/modules/notice'
     // ...mapState({
     //   pageArray : 'pageArray'
     // })
-  }
+  },
 })
 export default class extends Vue {
-
   // 2. Data 생성
   pageArray = [];
 
   created() {
     // 3. created 훅에서 API 호출 및, 컴포넌트 내의 데이터에 해당 결과값 대입
-    api.get('/t_notice')
-      .then(response => {
-        this.pageArray = response.data;
-
-      })
+    api.get('/t_notice').then(response => {
+      this.pageArray = response.data;
+    });
   }
 
   // 7. 매핑된 함수를 실행
@@ -79,8 +76,6 @@ export default class extends Vue {
   // created() {
   //   this.pageArray = this.fetchNoticeList()
   // }
-
-
 }
 </script>
 
@@ -90,10 +85,11 @@ div {
   width: 100%;
 }
 div table {
-  border-top: 1px solid #444444;  
+  border-top: 1px solid #444444;
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   border-bottom: 1px solid #444444;
   padding: 10px;
 }
