@@ -12,6 +12,7 @@
         <th>{{ val.id }}</th>
         <th>
           <router-link
+            style="text-decoration: none; color: inherit;"
             :to="{
               name: 'View',
               params: {

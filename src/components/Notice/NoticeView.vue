@@ -71,7 +71,11 @@ export default class extends Vue {
   Modifybtn() {
     this.$router.push({
       name: 'Modify',
-      params: { title: this.title, date: this.date, contents: this.contents },
+      params: {
+        title: this.title,
+        date: this.date,
+        contents: this.contents,
+      },
     });
   }
 

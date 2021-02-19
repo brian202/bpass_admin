@@ -9,14 +9,13 @@
         </tr>
         <tr>
           <td>날짜</td>
-          <th><input type="datetime-local" class="push date" v-model="date" /></th>
+          <th><input type="datetime-local" class="push date" :value="dateslice()"/></th>
         </tr>
         <tr>
           <td>내용</td>
           <th><textarea class="push body" v-model="contents" rows="10" /></th>
         </tr>
       </table>
-
       <button type="submit" class="btn send" @click="editBtn">수정완료</button>
       <input type="button" class="btn cancle" value="취소" @click="cancelBtn" />
     </form>
@@ -28,6 +27,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class extends Vue {
+  dateslice() {
+    const str = this.date;
+    const a = str.substr(0, 10);
+    const b = str.substr(11, 5);
+    const sum = a + "T"+ b;
+    return sum;
+  }
+
   @Prop({
     type: Object,
     required: true,
