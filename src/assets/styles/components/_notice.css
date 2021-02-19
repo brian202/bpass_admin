@@ -1,0 +1,59 @@
+/* NoticeList */
+.NoticeList h1 {
+  color: #ffffff;
+  text-align: center;
+}
+
+/* NoticeWrite */
+.NoticeWrite form {
+  padding: 30px;
+}
+.NoticeWrite td {
+  padding: 20px;
+}
+.NoticeWrite th {
+  block-size: 50px;
+}
+.NoticeWrite input {
+  width : 100%;
+}
+.NoticeWrite textarea {
+  width: 100%;
+}
+.NoticeWrite table {
+  width: 100%;
+  border-top: #1A90D8 2px solid;
+  border-bottom: #BABABA 1px solid;
+  border-collapse: collapse;
+}
+.NoticeWrite table td {
+  padding-left: 2px;
+  padding-right:2px;
+  height: 20px;
+}
+.NoticeWrite {
+  width: 100%; /*입력 칸 (input field) 의 폭을 지정하기 위해, 폭 속성 (width property) 를 사용하였습니다.*/
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* NoticeModify */
+.NoticeModify {
+  width: 100%; /*입력 칸 (input field) 의 폭을 지정하기 위해, 폭 속성 (width property) 를 사용하였습니다.*/
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+}

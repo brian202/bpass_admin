@@ -21,3 +21,18 @@ body,
   background-color: #f8f9fb;
   overflow: auto;
 }
+
+.btn {
+  margin: 10px;
+  border-radius: 4px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  height: 50px;
+  width: 20%;
+  border: none;
+}
+.btn.send {
+  color: #ffffff;
+  background-color: #0056d0;
+}

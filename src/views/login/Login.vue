@@ -20,9 +20,6 @@
       </div>
       <input type="submit" class="button" value="Login" />
     </form>
-    <!-- <p>
-      <i>{{ msg }}</i>
-    </p> -->
   </div>
 </template>
 
