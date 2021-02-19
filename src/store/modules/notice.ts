@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
-import { FETCH_NOTICE_LIST, FETCH_NOTICE } from './mutations-types';
+import { FETCH_NOTICE_LIST, FETCH_NOTICE } from '../../types/notice.types'
 import api from '@/api';
 
 Vue.use(Vuex);
@@ -24,8 +24,6 @@ const store: StoreOptions<NoticeState> = {
     pageArray: [],
     notice: { id: 0, title: '', contents: '', date: '', updated_at: '' },
   },
-  // getters : state를 기반으로 계산된 state가 필요할 때 사용
-  getters: {},
   mutations: {
     [FETCH_NOTICE_LIST](state, pageArray: Notice[]) {
       state.pageArray = pageArray;

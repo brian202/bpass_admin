@@ -16,7 +16,7 @@ export interface IPushState {
   apiSecret: string;
   title: string;
   body: string;
-  date: Date;
+  date: string | null;
 }
 
 @Module({ dynamic: true, namespaced: true, name: 'userModule', store })

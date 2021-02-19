@@ -1,7 +1,7 @@
 <template>
   <div class="NoticeModify">
     <h1>공지사항 수정 폼</h1>
-    <form>
+    <form class="ModifyForm" @submit.prevent="onSubmit">
       <table>
         <tr>
           <td>제목</td>
@@ -53,7 +53,12 @@ export default class extends Vue {
   private contents!: string;
 
   editBtn() {
-    alert('수정되었습니다.');
+    alert(
+      `제목: ${this.title}
+날짜: ${this.date}
+내용: ${this.contents}
+으로 수정되었습니다.`,
+    );
     this.$router.push({ name: 'List' });
   }
   cancelBtn() {
