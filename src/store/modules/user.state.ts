@@ -5,30 +5,28 @@ import {
   VuexModule,
   getModule,
 } from 'vuex-module-decorators';
-import { getItem, removeItem, setItem } from '../utils/storage';
-
+import { LogIn } from '../../api/user';
 import { IUserInfo } from '@/types/user.types';
 import store from '@/store';
 
 export interface IUserState {
-  email: string;
+  username: string;
   duration: number;
   accessToken: string | null;
 }
 
 @Module({ dynamic: true, namespaced: true, name: 'userModule', store })
 class User extends VuexModule implements IUserState {
-  email = getItem('email') || '';
-  accessToken = getItem('access_token') || null;
+  username = '';
+  accessToken = '';
   duration = 0;
 
   @Action({ rawError: true })
-  async login({ email, password }: IUserInfo) {
-    //api와야 하는 부분
-    if (email === 'test' && password === '1234') {
-      setItem('access_token', '가라토큰~~');
-      this.context.commit('SET_TOKEN', '가라토큰~~');
-    }
+  async login({ username, password }: IUserInfo) {
+    const { data } = await LogIn({ username, password });
+    console.log(await LogIn({ username, password }));
+    console.log(data);
+    this.context.commit('SET_TOKEN', data.access_token);
   }
 
   @Action({ rawError: true })
@@ -36,15 +34,24 @@ class User extends VuexModule implements IUserState {
     if (this.accessToken === null) {
       throw Error('token is undefined');
     }
+    console.log(this.accessToken);
 
-    //api호출
-    removeItem('access_token');
     this.context.commit('SET_TOKEN', null);
+    console.log(this.accessToken);
+  }
+
+  @Action
+  async test() {
+    if (this.accessToken === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @Mutation
-  SET_EMAIL(email: string) {
-    this.email = email;
+  SET_USERNAME(username: string) {
+    this.username = username;
   }
 
   @Mutation
