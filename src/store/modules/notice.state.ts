@@ -1,135 +1,57 @@
-import { INoticeInfo } from '@/types/notice.types';
-import { Action, Module, Mutation, VuexModule, getModule } from 'vuex-module-decorators';
-
+import {
+  Action,
+  Module,
+  Mutation,
+  VuexModule,
+  getModule,
+} from 'vuex-module-decorators';
 import store from '@/store';
-import { noticeAPI } from '@/api/notice';
-import { setItem } from '../utils/storage';
+import { noticeListAPI } from '@/api/notice';
+import { INoticeInfo, Lists } from '@/types/notice.types';
 
+// 전달받을 변수 Type
 export interface INoticeState {
-  title: string;
-  contents: string;
-  date: string;
-  priority: number;
-  updated: string;
+  list: { id: number, title: string, date: string };
+  total: number;
 }
 
 // Module 데코레이터, 이 클래스 vuex 모듈로 사용가능
-@Module({ dynamic: true, namespaced: true, name: 'noticeModule', store})
-class Notice extends VuexModule{
-
+@Module({ dynamic: true, namespaced: true, name: 'noticeModule', store })
+class NoticeInfo extends VuexModule implements INoticeState {
   // state는 아무 지정없이 그냥 선언해준다.
-  title = '';
-  contents = '';
-  date = '';
-  priority = 0;
-  updated = '';
+  total = 0
+  list = { id: 0, title: '', date: '' }
 
-  @Action({ rawError: true})
-	async list({ title, contents, date }: INoticeInfo) {
-		const response = await noticeAPI;
-		return response
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*
   @Action({ rawError: true })
-  async noticelist({ title, contents, date, priority, updated }: INoticeInfo) {
-    const { data } = await noticeList({ title, contents, date, priority, updated });
-
-    this.context.commit('SET_noticelist', data);
+  async noticeAPI({ list, total }: INoticeInfo) {
+    const { data } = await noticeListAPI({ list, total });
+    // console.log(data);
+    this.context.commit('SET_LIST', data.list);
+    // console.log(data.list);
+    this.context.commit('SET_TOTAL', data.total);
+    // console.log(data.total);
   }
 
   @Mutation
-  SET_TITLE(title: string) {
-    this.title = title;
+  SET_TOTAL(total: number) {
+    this.total = total;
+    // console.log(this.total);
+    return total;
   }
 
   @Mutation
-  SET_CONTENTS(contents: string) {
-    this.contents = contents;
+  SET_LIST(list: any) {
+    this.list = list;
+    // console.log(this.list);
+    return list; 
   }
-
-  @Mutation
-  SET_DATE(date: string) {
-    this.date = date;
-  }
-
-
-
-  // 추가 Mutation
-  @Mutation
-  SET_NOTICELIST(list: listArray){
-    this.listArray.push(list);
-  }
-
-  @Mutation
-  SET_NOTICEDETAIL(id: number) {
-    
-  }
-  */
+  
+ // @Mutation
+ // SET_LIST(list: Lists[]) {
+ //   this.list = list;
+    // console.log(this.list);
+ //   return list; 
+ // }
 
 }
-export default getModule(Notice);
-
-
-
-/*
-
-
-
-import Vue from 'vue';
-import Vuex, { StoreOptions } from 'vuex';
-import { FETCH_NOTICE_LIST, FETCH_NOTICE } from '../../types/notice.types'
-import api from '@/api';
-
-Vue.use(Vuex);
-
-interface NoticeState {
-  pageArray: Notice[];
-  notice: Notice;
-}
-
-const store: StoreOptions<NoticeState> = {
-  state: {
-    pageArray: [],
-    notice: { id: 0, title: '', contents: '', date: '', updated_at: '' },
-  },
-  mutations: {
-    [FETCH_NOTICE_LIST](state, pageArray: Notice[]) {
-      state.pageArray = pageArray;
-    },
-    [FETCH_NOTICE](state, notice: Notice) {
-      state.notice = notice;
-    },
-  },
-  actions: {
-    // fetchNoticeList 액션 함수 작성
-    // api 모듈을 사용하여 api로부터 게시물을 받아오도록 요청
-    // 응답으로 내려온 게시물 데이터를 FETCH_NOTICE_LIST 변이의 실행과 함께 인자로 넘겨준다.
-    fetchNoticeList({ commit }) {
-      return api.get('/t_notice').then(response => {
-        commit(FETCH_NOTICE_LIST, response.data);
-      });
-    },
-    fetchNotice({ commit }, postId) {
-      return api.get(`/t_notice/${postId}`).then(res => {
-        commit(FETCH_NOTICE, res.data);
-      });
-    },
-  },
-};
-
-export default new Vuex.Store(store);
-*/
+export const noticeModule = getModule(NoticeInfo);

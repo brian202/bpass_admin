@@ -40,6 +40,12 @@ const notice: ConfigType = {
   [TEST_MODE]: '/admin/api/v1/notice',
 };
 
+const noticeList: ConfigType = {
+  [DEV_MODE]: '/admin/api/v1/notice?pg_size=10',
+  [PROD_MODE]: '/admin/api/v1/notice?pg_size=10',
+  [TEST_MODE]: '/admin/api/v1/notice?pg_size=10',
+};
+
 const push: ConfigType = {
   [DEV_MODE]: '/admin/api/v1/push',
   [PROD_MODE]: '/admin/api/v1/push',
@@ -52,4 +58,5 @@ export const API_LOGIN_URL = login[MODE];
 export const API_LOGOUT_URL = logout[MODE];
 export const API_REFRESH_URL = refresh[MODE];
 export const API_NOTICE_URL = notice[MODE];
+export const API_NOTICE_LIST_URL = noticeList[MODE];
 export const API_PUSH_URL = push[MODE];
