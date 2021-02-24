@@ -41,9 +41,9 @@ const notice: ConfigType = {
 };
 
 const noticeList: ConfigType = {
-  [DEV_MODE]: '/admin/api/v1/notice?pg_size=10',
-  [PROD_MODE]: '/admin/api/v1/notice?pg_size=10',
-  [TEST_MODE]: '/admin/api/v1/notice?pg_size=10',
+  [DEV_MODE]: '/admin/api/v1/notice?pg_size=10&pg_number=1',
+  [PROD_MODE]: '/admin/api/v1/notice?pg_size=10&pg_number=1',
+  [TEST_MODE]: '/admin/api/v1/notice?pg_size=10&pg_number=1',
 };
 
 const push: ConfigType = {
