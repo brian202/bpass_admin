@@ -5,9 +5,9 @@
       <div class="field">
         <input
           type="text"
-          class="email"
-          v-model="loginForm.email"
-          placeholder="Email"
+          class="username"
+          v-model="loginForm.username"
+          placeholder="username"
         />
       </div>
       <div class="field">
@@ -31,17 +31,16 @@ import { IUserInfo } from '@/types/user.types';
 @Component
 export default class extends Vue {
   // Data 속성
-  loginForm: IUserInfo = { email: '', password: '' };
+  loginForm: IUserInfo = { username: '', password: '' };
 
   // methods 속성
   async onSubmit() {
-    await userModule.login(this.loginForm).then(async () => {
-      this.accessToken ? this.$router.push('/') : alert('로그인 실패');
-    });
-  }
-
-  get accessToken() {
-    return userModule.accessToken;
+    try {
+      await userModule.login(this.loginForm);
+      if (userModule.isAuthorize) this.$router.push('/');
+    } catch {
+      alert('로그인 실패');
+    }
   }
 }
 </script>

@@ -9,13 +9,16 @@
         </tr>
         <tr>
           <td>날짜</td>
-          <th><input type="datetime-local" class="push date" :value="dateslice()"/></th>
+          <th>
+            <input type="datetime-local" class="push date" :value="dateslice()" />
+          </th>
         </tr>
         <tr>
           <td>내용</td>
           <th><textarea class="push body" v-model="contents" rows="10" /></th>
         </tr>
       </table>
+
       <button type="submit" class="btn send" @click="editBtn">수정완료</button>
       <input type="button" class="btn cancle" value="취소" @click="cancelBtn" />
     </form>
@@ -31,7 +34,7 @@ export default class extends Vue {
     const str = this.date;
     const a = str.substr(0, 10);
     const b = str.substr(11, 5);
-    const sum = a + "T"+ b;
+    const sum = a + 'T' + b;
     return sum;
   }
 

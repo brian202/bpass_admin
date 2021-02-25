@@ -7,6 +7,7 @@
         <!-- <td>내용</td> -->
         <td>등록일시</td>
       </tr>
+      
       <tr v-for="(val, key) in pagelist()" v-bind:key="key">
         <!-- {{ pagelist() }} -->
         <th>{{ val.id }}</th>
@@ -16,7 +17,7 @@
             :to="{
               name: 'View',
               params: {
-                postId: val.id.toString(),
+                postId: val.id,
                 title: val.title,
                 date: val.date,
                 contents: val.contents,
@@ -26,23 +27,30 @@
             {{ val.title }}
           </router-link>
         </th>
-        <th>{{ val.date }}</th>
+        <th>{{(val.date.slice(0,16)).replace('T',' ')}}</th>
       </tr>
     </table>
-
-    <div class="btn-cover">
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-        이전
-      </button>
-      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount() }} 페이지</span>
-      <button
-        :disabled="pageNum >= pageCount() - 1"
-        class="page-btn"
-        @click="nextPage"
-      >
-        다음
-      </button>
+<!--    
+    <div class="page">
+      <a href="#">&laquo;</a>
+      <span v-for="(val, key) in (listArray.length)" v-bind:key="key">
+        <a href="#">{{ key }}</a>
+      </span>
+      <a href="#">&raquo;</a>
     </div>
+-->
+    <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+      이전
+    </button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount() }} 페이지</span>
+    <button
+      :disabled="pageNum >= pageCount() - 1"
+      class="page-btn"
+      @click="nextPage"
+    >
+      다음
+    </button>
+
   </div>
 </template>
 
@@ -55,18 +63,16 @@ export default class extends Vue {
     type: Array,
     required: true,
   })
-  listArray!: string[];
-
-  @Prop({
-    type: Number,
-    required: false,
-    default: 10,
-  })
-  pageSize!: number;
+  listArray!:Array<string>;
 
   // Data속성
-  pageNum = 0;
 
+  pageSize = 10; // 페이지에 표시할 공지사항 수
+  pageNum = 0
+/*
+  totalCount = this.listArray.length; // 전체 건수
+  totalPage = Math.ceil(this.totalCount/this.pageSize);
+*/
   // Methods 속성
   nextPage() {
     this.pageNum += 1;
@@ -76,6 +82,7 @@ export default class extends Vue {
   }
 
   // Computed 속성
+
   pageCount() {
     const listLeng = this.listArray.length;
     const listSize = this.pageSize;
@@ -89,5 +96,6 @@ export default class extends Vue {
     const end = start + this.pageSize;
     return this.listArray.slice(start, end);
   }
+
 }
 </script>

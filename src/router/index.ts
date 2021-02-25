@@ -1,16 +1,23 @@
 import Vue from 'vue';
 import VueRouter, { Route, RouteConfig } from 'vue-router';
-import Login from '@/views/login/Login.vue';
+import Login from '@/views/login/index.vue';
 import Layout from '@/views/Home.vue';
 import { userModule } from '@/store/modules/user.state';
 
 Vue.use(VueRouter);
 
-const beforeEnter = (from: Route, to: Route, next: Function) => {
-  if (userModule.accessToken) {
-    return next();
-  }
-  next('/login');
+const beforeEnter = async (from: Route, to: Route, next: Function) => {
+  await userModule
+    .refreshToken()
+    .then(() => {
+      if (userModule.accessToken) {
+        return next();
+      }
+    })
+    .catch(() => {
+      console.log('여기 와야 하는거 아닌거');
+      next('/login');
+    });
 };
 
 const routes: RouteConfig[] = [
@@ -43,6 +50,8 @@ const routes: RouteConfig[] = [
         path: '/notice/list',
         name: 'List',
         component: () => import('@/components/Notice/NoticeList.vue'),
+        props: true,
+        //beforeEnter,
       },
       {
         path: '/notice/write',

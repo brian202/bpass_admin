@@ -5,56 +5,109 @@ import {
   VuexModule,
   getModule,
 } from 'vuex-module-decorators';
-import { getItem, removeItem, setItem } from '../utils/storage';
+import * as UserApi from '../../api/user';
 
 import { IUserInfo } from '@/types/user.types';
 import store from '@/store';
 
 export interface IUserState {
-  email: string;
-  duration: number;
-  accessToken: string | null;
+  username: string;
+  accessToken: string;
+  isAuthorize: boolean;
 }
 
+/**
+ * @description 유저의 상태 관리를 하는 모듈
+ */
 @Module({ dynamic: true, namespaced: true, name: 'userModule', store })
 class User extends VuexModule implements IUserState {
-  email = getItem('email') || '';
-  accessToken = getItem('access_token') || null;
-  duration = 0;
+  username = '';
+  accessToken = '';
+  isAuthorize = false;
 
+  /**
+   * @description 로그인 액션
+   * @param {string} username
+   * @param {string} password
+   */
   @Action({ rawError: true })
-  async login({ email, password }: IUserInfo) {
-    //api와야 하는 부분
-    if (email === 'test' && password === '1234') {
-      setItem('access_token', '가라토큰~~');
-      this.context.commit('SET_TOKEN', '가라토큰~~');
+  async login({ username, password }: IUserInfo) {
+    const { data } = await UserApi.logIn({ username, password });
+    if (data) {
+      window.localStorage.setItem('username', username);
+      this.context.commit('SET_USERNAME', username);
+      this.context.commit('SET_TOKEN', data.access_token);
+      this.context.commit('SET_IS_AUTHORIZE', true);
     }
   }
 
+  /**
+   * @description 초기화하는 액션
+   */
+  @Action
+  init() {
+    this.context.commit('SET_TOKEN', '');
+    this.context.commit('SET_IS_AUTHORIZE', false);
+  }
+
+  /**
+   * @description 로그인 연장하는 액션
+   */
+  @Action({ rawError: true })
+  async refreshToken() {
+    this.init();
+    const { data } = await UserApi.refresh();
+    if (data) {
+      this.context.commit('SET_TOKEN', data.access_token);
+      this.context.commit('SET_IS_AUTHORIZE', true);
+    }
+  }
+
+  /**
+   * @description 로그아웃 액션
+   */
   @Action({ rawError: true })
   async logout() {
-    if (this.accessToken === null) {
-      throw Error('token is undefined');
+    const username = window.localStorage.getItem('username');
+
+    if (username) {
+      await UserApi.logOut(username)
+        .then(() => {
+          window.localStorage.clear();
+          this.context.commit('SET_TOKEN', '');
+          this.context.commit('SET_IS_AUTHORIZE', false);
+        })
+        .catch((e: unknown) => {
+          console.log('오마갓 로그아웃에러', e);
+        });
     }
-
-    //api호출
-    removeItem('access_token');
-    this.context.commit('SET_TOKEN', null);
   }
 
+  /**
+   * @description username을 업데이트하는 뮤테이션
+   * @param {string} username
+   */
   @Mutation
-  SET_EMAIL(email: string) {
-    this.email = email;
+  SET_USERNAME(username: string) {
+    this.username = username;
   }
 
+  /**
+   * @description access token 업데이트하는 뮤테이션
+   * @param {string} accessToken
+   */
   @Mutation
   SET_TOKEN(accessToken: string) {
     this.accessToken = accessToken;
   }
 
+  /**
+   * @description isAuthorize를 업데이트하는 뮤테이션
+   * @param {boolean} authorize
+   */
   @Mutation
-  SET_DURATION(duration: number) {
-    this.duration = duration;
+  SET_IS_AUTHORIZE(authorize: boolean) {
+    this.isAuthorize = authorize;
   }
 }
 

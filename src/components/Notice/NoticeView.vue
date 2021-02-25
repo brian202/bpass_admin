@@ -29,6 +29,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
 
@@ -38,25 +39,25 @@ export default class extends Vue {
   @Action readonly fetchNoticeList: any;
 
   @Prop({
-    type: Object,
+    type: String,
     required: true,
   })
   private postId!: string;
 
   @Prop({
-    type: Object,
+    type: String,
     required: true,
   })
   private date!: string;
 
   @Prop({
-    type: Object,
+    type: String,
     required: true,
   })
   private title!: string;
 
   @Prop({
-    type: Object,
+    type: String,
     required: true,
   })
   private contents!: string;
